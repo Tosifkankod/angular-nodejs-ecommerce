@@ -1,0 +1,40 @@
+<div class="h-[100vh]">
+  <div class="p-2 gap-4 flex">
+    <div class="images shadow-md border-2rounded-lg p-4 flex-1">
+      <div class="h-full w-full">
+
+
+        <owl-carousel-o [options]="customOptions">
+          <ng-container *ngFor="let item of carouselImages; let i = index">
+            <ng-template class="slide" carouselSlide>
+              <img [src]="item"  />
+            </ng-template>
+          </ng-container>
+        </owl-carousel-o>
+
+      </div>
+    </div>
+    <div class="content flex-1 p-4">
+      <h1 class="text-4xl font-bold underline">
+        {{ product?.name }}
+      </h1>
+      <div class="flex items-end gap-4 mt-8">
+        <h2 class="text-4xl mt-4 font-bold">${{ product?.price }}</h2>
+        <h2 class="text-2xl mt-4 text-red-600 line-through">$499</h2>
+      </div>
+      <h3 class="mt-4 text-gray-400">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt expedita,
+        at facere corporis iusto hic veritatis rem necessitatibus quia aperiam,
+        quas quidem aspernatur quae. Itaque optio facilis dolores, laboriosam in
+        non impedit voluptatem quod aliquam tempora repellat iusto, accusantium
+        fugiat perferendis molestias quam recusandae provident. Aspernatur culpa
+        illo aut quasi.
+      </h3>
+      <button
+        class="mt-8 p-2 px-6 text-2xl rounded-md hover:bg-gray-800 bg-gray-500 text-white"
+      >
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>

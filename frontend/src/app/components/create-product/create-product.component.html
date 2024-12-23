@@ -1,0 +1,137 @@
+<div class="h-screen p-2 border-2 border-red-600">
+  <h1 class="text-4xl text-center mt-4 font-bold">Create Product 🛒</h1>
+  <div class="mt-4 w-1/2 mx-auto">
+    <form #productData="ngForm" (ngSubmit)="handleSubmit(productData)">
+
+      <!-- Title Field -->
+      <div class="mt-4">
+        <label class="text-xl" for="name">Name/Title: </label>
+        <br />
+        <input
+          class="text-xl p-2 rounded-md mt-2 w-full shadow-md border-[1px]"
+          required
+          name="name"
+          id="name"
+          type="text"
+          placeholder="Enter product title"
+          ngModel
+          #name="ngModel"
+        />
+        <div *ngIf="name.touched && name.invalid" class="text-red-500 mt-2 ml-2">
+          Title is required.
+        </div>
+      </div>
+
+      <!-- Price Field -->
+      <div class="mt-4">
+        <label class="text-xl" for="price">Price: </label>
+        <br />
+        <input
+          class="text-xl p-2 rounded-md mt-2 w-full shadow-md border-[1px]"
+          required
+          name="price"
+          id="price"
+          type="number"
+          placeholder="Enter price in USD"
+          ngModel
+          #price="ngModel"
+        />
+        <div *ngIf="price.touched && price.invalid" class="text-red-500 mt-2 ml-2">
+          Price is required.
+        </div>
+      </div>
+
+      <!-- SKU Field -->
+      <div class="mt-4">
+        <label class="text-xl" for="sku">SKU: </label>
+        <br />
+        <input
+          class="text-xl p-2 rounded-md mt-2 w-full shadow-md border-[1px]"
+          required
+          name="sku"
+          id="sku"
+          type="text"
+          placeholder="SKU-123"
+          ngModel
+          #sku="ngModel"
+        />
+        <div *ngIf="sku.touched && sku.invalid" class="text-red-500 mt-2 ml-2">
+          SKU is required.
+        </div>
+      </div>
+
+      <!-- Thumbnail Upload -->
+      <div class="mt-4">
+        <label class="text-xl" for="thumbnail">Thumbnail</label>
+        <br />
+        <input
+          class="text-xl p-2 rounded-md mt-2 w-full shadow-md border-[1px]"
+          required
+          name="thumbnail"
+          id="thumbnail"
+          accept="image/png, image/gif, image/jpeg"
+          type="file"
+          (change)="onFileSelect($event, 'thumbnail')"
+        />
+        <div *ngIf="!thumbnail && thumbnailTouched" class="text-red-500 mt-2 ml-2">
+          Thumbnail is required.
+        </div>
+
+        @if (thumbnailUrl != null) {
+          <div class=" mt-2 flex gap-2 flex-1 h-[80px]">
+            <div class="images w-[80px] ">
+              <div class="h-[55px]">
+                <img [src]="thumbnailUrl" class="w-full h-full object-contain" alt="">
+              </div>
+              <div class="h-[25px] flex items-center justify-center">
+                <button (click)="handleDeleteThumbnail()" class="text-xs flex items-center justify-center w-full bg-red-500 text-white rounded-md">delete</button>
+              </div>
+            </div>
+          </div>
+        }
+        
+       
+      </div>
+
+      <!-- Multiple Images Upload -->
+      <div class="mt-4">
+        <label class="text-xl" for="images">Images: Multiple</label>
+        <br />
+        <input
+          class="text-xl p-2 rounded-md mt-2 w-full shadow-md border-[1px]"
+          required
+          multiple
+          name="images"
+          id="images"
+          accept="image/png, image/gif, image/jpeg"
+          type="file"
+          (change)="onFileSelect($event, 'images')"
+        />
+        <div *ngIf="!images && imagesTouched" class="text-red-500 mt-2 ml-2">
+          At least one image is required.
+        </div>
+        <div class=" mt-2 flex gap-2 flex-1 h-[80px]">
+          @for (item of imagesPreviews; track item; let i = $index) {
+              <div class="images w-[80px] ">
+                <div class="h-[55px]">
+                  <img [src]="item" class="w-full h-full object-contain" alt="">
+                </div>
+                <div class="h-[25px] flex items-center justify-center">
+                  <button (click)="handleDeleteImages(i)" class="text-xs flex items-center justify-center w-full bg-red-500 text-white rounded-md">delete</button>
+                </div>
+              </div>
+          }
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <input
+        type="submit"
+        [disabled]="productData.form.invalid"
+        [class.cursor-not-allowed]="productData.form.invalid"
+        [class.cursor-pointer]="!productData.form.invalid"
+        class="mt-6 text-xl p-2 shadow-md bg-gray-500 text-white hover:bg-gray-400 rounded-md"
+      />
+    </form>
+  </div>
+</div>

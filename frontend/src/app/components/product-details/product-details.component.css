@@ -1,0 +1,44 @@
+/* Ensure the owl-carousel container takes up 100% of its parent container */
+owl-carousel-o {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  /* Ensure the images are displayed horizontally and fit the carousel container */
+  .owl-item {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Styling for images inside the carousel */
+  .carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the slide area without distortion */
+  }
+  
+  /* Ensure the image container does not overflow */
+  .images {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Hide anything that overflows from the image container */
+  }
+  
+  /* Optional: Add padding around each slide */
+  .slide {
+    padding: 10px;
+  }
+  
+  /* Make sure the carousel displays horizontally and properly scrolls */
+  .owl-stage {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  /* Optional: Ensuring the outer carousel container is properly centered */
+  .owl-stage-outer {
+    overflow: hidden;
+  }
+  
